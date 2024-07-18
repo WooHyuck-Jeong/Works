@@ -54,10 +54,12 @@ sensor4Data = pd.DataFrame()
 sensor5Data = pd.DataFrame()
 sensor6Data = pd.DataFrame()
 
-dfBaseMean = pd.DataFrame()
+dfBase123Mean = pd.DataFrame()
+dfBase456Mean = pd.DataFrame()
 
 for file in convertedFileList:
     name = file.split(f"{folderPath}")[1]
+    name = name.split(".")[0]
 
     if name.startswith("s"):
         distance = name.split('_')[1]
@@ -87,22 +89,30 @@ for file in convertedFileList:
             sensorData = pd.read_csv(file, sep= ",", usecols= [6], names = [f"d{distance}"], skiprows= [0])
             sensor6Data = pd.concat((sensor6Data, sensorData), axis = 1)
 
-    elif name.startswith("Base"):
-        base = pd.read_csv(file, sep= ",", usecols= [1, 2, 3, 4, 5, 6])
+    elif name.endswith("123"):
+        base = pd.read_csv(file, sep= ",", usecols= [1, 2, 3])
         baseMean = base.mean(axis = 0)
-        dfBaseMean = pd.concat((dfBaseMean, baseMean), axis= 1).T.to_numpy().reshape(6,)
+        dfBase123Mean = pd.concat((dfBase123Mean, baseMean), axis= 1).T.to_numpy().reshape(3,)
+        
+    elif name.endswith("456"):
+        base = pd.read_csv(file, sep= ",", usecols= [4, 5, 6])
+        baseMean = base.mean(axis= 0)
+        dfBase456Mean = pd.concat((dfBase456Mean, baseMean), axis= 1).T.to_numpy().reshape(3,)
 
-scaledSensor1 = sensor1Data - dfBaseMean[0]
-scaledSensor2 = sensor2Data - dfBaseMean[1]
-scaledSensor3 = sensor3Data - dfBaseMean[2]
-scaledSensor4 = sensor4Data - dfBaseMean[3]
-scaledSensor5 = sensor5Data - dfBaseMean[4]
-scaledSensor6 = sensor6Data - dfBaseMean[5]
+scaledSensor1 = sensor1Data - dfBase123Mean[0]
+scaledSensor2 = sensor2Data - dfBase123Mean[1]
+scaledSensor3 = sensor3Data - dfBase123Mean[2]
+scaledSensor4 = sensor4Data - dfBase456Mean[0]
+scaledSensor5 = sensor5Data - dfBase456Mean[1]
+scaledSensor6 = sensor6Data - dfBase456Mean[2]
 
-plotResult(1000, 3000, scaledSensor1, "Sensor 1")
-plotResult(1000, 3000, scaledSensor2, "Sensor 1")
-plotResult(1000, 3000, scaledSensor3, "Sensor 1")
-plotResult(1000, 3000, scaledSensor4, "Sensor 4")
-plotResult(1000, 3000, scaledSensor5, "Sensor 5")
-plotResult(1000, 3000, scaledSensor6, "Sensor 6")
+minRow = 200
+maxRow = 2000
+
+plotResult(minRow, maxRow, scaledSensor1, "Sensor 1")
+plotResult(minRow, maxRow, scaledSensor2, "Sensor 2")
+plotResult(minRow, maxRow, scaledSensor3, "Sensor 3")
+plotResult(minRow, maxRow, scaledSensor4, "Sensor 4")
+plotResult(minRow, maxRow, scaledSensor5, "Sensor 5")
+plotResult(minRow, maxRow, scaledSensor6, "Sensor 6")
 plt.show()
