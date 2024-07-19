@@ -16,7 +16,7 @@ def getScaled(filePath):
 def plotResult(minRow, maxRow, data, imgTitle):
     rowList = np.arange(minRow, maxRow, 1)
     plotData = data.loc[rowList, :]
-    plotData.plot(kind= "line", title= imgTitle, ylim= (-1000, 1000))
+    plotData.plot(kind= "line", title= imgTitle, ylim= (-500, 500))
 
 # Read file names
 folderPath = input("Test2 Result Folder: ")
@@ -45,7 +45,8 @@ for file in fileNames:
 
     saveFileName = str(file.split(f"{folderPath}")[1])
     
-    res.to_csv(folderPath + saveFileName + ".csv", sep= ",")
+    # res.to_csv(folderPath + saveFileName + ".csv", sep= ",")
+
 
 # # Read csv files
 convertedFileList = sorted(glob.glob(folderPath + "*.csv"))
@@ -56,31 +57,24 @@ baseMean = pd.DataFrame(base.mean(axis= 0)).T.to_numpy().reshape(6, )
 
 cols = [1, 2, 3, 4, 5, 6]
 
-for file in convertedFileList:
-    name = file.split(f"{folderPath}")[1]
-    name = name.split(".")[0]
-    
-    if not name.startswith("B"):
-        
-        if name.endswith("1"):
-            scaledCase1 = getScaled(file)
-        elif name.endswith("2"):
-            scaledCase2 = getScaled(file)
-        elif name.endswith("3"):
-            scaledCase3 = getScaled(file)
-        elif name.endswith("4"):
-            scaledCase4 = getScaled(file)
-        elif name.endswith("5"):
-            scaledCase5 = getScaled(file)
-        elif name.endswith("6"):
-            scaledCase6 = getScaled(file)
-        elif name.endswith("7"):
-            scaledCase7 = getScaled(file)
-        elif name.endswith("8"):
-            scaledCase8 = getScaled(file)
+scaledCase1 = getScaled(convertedFileList[1])
+scaledCase10 = getScaled(convertedFileList[2])
+scaledCase11 = getScaled(convertedFileList[3])
+scaledCase12 = getScaled(convertedFileList[4])
+scaledCase13 = getScaled(convertedFileList[5])
+scaledCase14 = getScaled(convertedFileList[6])
+scaledCase15 = getScaled(convertedFileList[7])
+scaledCase2 = getScaled(convertedFileList[8])
+scaledCase3 = getScaled(convertedFileList[9])
+scaledCase4 = getScaled(convertedFileList[10])
+scaledCase5 = getScaled(convertedFileList[11])
+scaledCase6 = getScaled(convertedFileList[12])
+scaledCase7 = getScaled(convertedFileList[13])
+scaledCase8 = getScaled(convertedFileList[14])
+scaledCase9 = getScaled(convertedFileList[15])
 
-minRows = 100
-maxRows = 2000
+minRows = 1000
+maxRows = 3300
 
 plotResult(minRows, maxRows, scaledCase1, "Case1")
 plotResult(minRows, maxRows, scaledCase2, "Case2")
@@ -90,6 +84,15 @@ plotResult(minRows, maxRows, scaledCase5, "Case5")
 plotResult(minRows, maxRows, scaledCase6, "Case6")
 plotResult(minRows, maxRows, scaledCase7, "Case7")
 plotResult(minRows, maxRows, scaledCase8, "Case8")
+
+plotResult(minRows, maxRows, scaledCase9, "Case9")
+plotResult(minRows, maxRows, scaledCase10, "Case10")
+plotResult(minRows, maxRows, scaledCase11, "Case11")
+plotResult(minRows, maxRows, scaledCase12, "Case12")
+plotResult(minRows, maxRows, scaledCase13, "Case13")
+plotResult(minRows, maxRows, scaledCase14, "Case14")
+plotResult(minRows, maxRows, scaledCase15, "Case15")
+
 plt.show()
 
 # C:\Users\hyukk\Desktop\Test2\

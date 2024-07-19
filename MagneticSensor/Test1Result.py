@@ -42,7 +42,7 @@ for file in fileNames:
     res.columns = ["s1", "s2", "s3", "s4", "s5", "s6"]
     
     saveFileName = str(file.split(f"{folderPath}")[1])
-    res.to_csv(folderPath + saveFileName + ".csv", sep = ",")
+    # res.to_csv(folderPath + saveFileName + ".csv", sep = ",")
 
 # Read csv files
 convertedFileList = sorted(glob.glob(folderPath + "*.csv"))
@@ -106,8 +106,8 @@ scaledSensor4 = sensor4Data - dfBase456Mean[0]
 scaledSensor5 = sensor5Data - dfBase456Mean[1]
 scaledSensor6 = sensor6Data - dfBase456Mean[2]
 
-minRow = 200
-maxRow = 2000
+minRow = 50
+maxRow = 1000
 
 plotResult(minRow, maxRow, scaledSensor1, "Sensor 1")
 plotResult(minRow, maxRow, scaledSensor2, "Sensor 2")
