@@ -1,17 +1,7 @@
-import platform
+for i in range(10):
+    if i % 2 == 0:
+        continue
+        print(i)
+    print(i)
 
-# # print(platform.system())
-
-# if platform.system() == "Darwin":
-#     print("Macbook")
-# else:
-#     print("Window")
-
-import sys
-
-# print(sys.platform)
-
-if sys.platform == "darwin":
-    print("Mac")
-else:
-    print("Window")
+print("Done")

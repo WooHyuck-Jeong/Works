@@ -42,7 +42,7 @@ for file in fileNames:
     res.columns = ["s1", "s2", "s3", "s4", "s5", "s6"]
     
     saveFileName = str(file.split(f"{folderPath}")[1])
-    # res.to_csv(folderPath + saveFileName + ".csv", sep = ",")
+    res.to_csv(folderPath + saveFileName + ".csv", sep = ",")
 
 # Read csv files
 convertedFileList = sorted(glob.glob(folderPath + "*.csv"))
