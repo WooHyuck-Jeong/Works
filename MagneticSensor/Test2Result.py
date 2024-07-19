@@ -16,7 +16,7 @@ def getScaled(filePath):
 def plotResult(minRow, maxRow, data, imgTitle):
     rowList = np.arange(minRow, maxRow, 1)
     plotData = data.loc[rowList, :]
-    plotData.plot(kind= "line", title= imgTitle, ylim= (-500, 500))
+    plotData.plot(kind= "line", title= imgTitle, ylim= (-500, 500), figsize= (6, 5))
 
 # Read file names
 folderPath = input("Test2 Result Folder: ")

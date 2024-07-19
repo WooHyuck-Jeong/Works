@@ -14,7 +14,7 @@ def makeDirectory(dirName):
 def plotResult(minRow, maxRow, data, imgTitle):
     rowList = np.arange(minRow, maxRow, 1)
     plotData = data.loc[rowList, :]
-    plotData.plot(kind= "line", title= imgTitle)
+    plotData.plot(kind= "line", title= imgTitle, figsize= (6, 5))
 
 # Read raw data file names
 folderPath = input("폴더 경로: ")
