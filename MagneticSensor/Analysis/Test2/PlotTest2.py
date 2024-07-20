@@ -7,11 +7,6 @@ import matplotlib.pyplot as plt
 folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test2/result/"
 fileList = sorted(glob.glob(folderPath + "*.csv"))
 
-# for i in range(16):
-#     print(i)
-#     print(fileList[i])
-#     print("=======================")
-
 base = pd.read_csv(fileList[0], sep= ",")
 baseMean = pd.DataFrame(base.mean(axis= 0))
 
