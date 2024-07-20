@@ -64,6 +64,10 @@ yMax = 2400
 scaledCase = [scaledCase1, scaledCase2, scaledCase3, scaledCase4, scaledCase5, 
               scaledCase6, scaledCase7, scaledCase8, scaledCase9, scaledCase10, 
               scaledCase11, scaledCase12, scaledCase13, scaledCase14, scaledCase15]
+
+for i in range(len(scaledCase)):
+    scaledCase[i].to_csv(f"/Users/jwh/Desktop/0720/MagneticTest/Test2/result/ScaledCase{i}.csv", sep= ",")
+
 titleList = [f"Case {i+1}" for i in range(15)]
 
 fig, axs = plt.subplots(3, 5, figsize= (10, 8))
