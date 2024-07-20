@@ -38,8 +38,8 @@ scaledCase7 = getScaled(fileList[13])
 scaledCase8 = getScaled(fileList[14])
 scaledCase9 = getScaled(fileList[15])
 
-yMinLim = -200
-yMaxLim = 200
+yMinLim = -2500
+yMaxLim = 2500
 fig, axs = plt.subplots(3, 5, figsize= (20, 10))
 scaledCase1.plot(kind= "line", ax= axs[0, 0], title= "Case1", ylim= (yMinLim, yMaxLim))
 scaledCase2.plot(kind= "line", ax= axs[0, 1], title= "Case2", ylim= (yMinLim, yMaxLim))
