@@ -4,63 +4,72 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def getScaled(filePath):
-    df = pd.read_csv(filePath, sep = ",", usecols = useCols)
-    res = pd.DataFrame()
+folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test2/result/"
+fileList = sorted(glob.glob(folderPath + "*.csv"))
+
+# for i in range(16):
+#     print(i)
+#     print(fileList[i])
+#     print("=======================")
+
+base = pd.read_csv(fileList[0], sep= ",")
+baseMean = pd.DataFrame(base.mean(axis= 0))
+
+case1 = pd.read_csv(fileList[1], sep= ",")
+case2 = pd.read_csv(fileList[8], sep= ",")
+case3 = pd.read_csv(fileList[9], sep= ",")
+case4 = pd.read_csv(fileList[10], sep= ",")
+case5 = pd.read_csv(fileList[11], sep= ",")
+case6 = pd.read_csv(fileList[12], sep= ",")
+case7 = pd.read_csv(fileList[13], sep= ",")
+case8 = pd.read_csv(fileList[14], sep= ",")
+case9 = pd.read_csv(fileList[15], sep= ",")
+case10 = pd.read_csv(fileList[2], sep= ",")
+case11 = pd.read_csv(fileList[3], sep= ",")
+case12 = pd.read_csv(fileList[4], sep= ",")
+case13 = pd.read_csv(fileList[5], sep= ",")
+case14 = pd.read_csv(fileList[6], sep= ",")
+case15 = pd.read_csv(fileList[7], sep= ",")
+
+
+def getScaledData(df):
+    res = []
+    for i in range(6):
+        res.append(df.iloc[:, i] - baseMean.iloc[i, 0])
     
-    for i in range(len(baseMean)):
-        temp = df.iloc[:, i] - baseMean.iloc[i, 0]
-        res = pd.concat((res, temp), axis = 1)
+    res = np.array(res).reshape(6, 3000).T
+    res = pd.DataFrame(res, columns= ["s1", "s2", "s3", "s4", "s5", "s6"])
 
     return res
 
-folderPath = input("Folder: ")
-fileList = [file for file in sorted(glob.glob(folderPath + "*.csv")) if os.path.isfile(file)]
+scaledCase1 = getScaledData(case1)
+scaledCase2 = getScaledData(case2)
+scaledCase3 = getScaledData(case3)
+scaledCase4 = getScaledData(case4)
+scaledCase5 = getScaledData(case5)
+scaledCase6 = getScaledData(case6)
+scaledCase7 = getScaledData(case7)
+scaledCase8 = getScaledData(case8)
+scaledCase9 = getScaledData(case9)
+scaledCase10 = getScaledData(case10)
+scaledCase11 = getScaledData(case11)
+scaledCase12 = getScaledData(case12)
+scaledCase13 = getScaledData(case13)
+scaledCase14 = getScaledData(case14)
+scaledCase15 = getScaledData(case15)
 
-useCols = [0, 1, 2, 3, 4, 5]
-base = pd.read_csv(fileList[0], sep = ",", usecols = useCols)
-baseMean = pd.DataFrame(base.mean(axis= 0))
-print(baseMean)
+yMin = -2400
+yMax = 2400
 
-scaledCase1 = getScaled(fileList[1])
-scaledCase10 = getScaled(fileList[2])
-scaledCase11 = getScaled(fileList[3])
-scaledCase12 = getScaled(fileList[4])
-scaledCase13 = getScaled(fileList[5])
-scaledCase14 = getScaled(fileList[6])
-scaledCase15 = getScaled(fileList[7])
-scaledCase2 = getScaled(fileList[8])
-scaledCase3 = getScaled(fileList[9])
-scaledCase4 = getScaled(fileList[10])
-scaledCase5 = getScaled(fileList[11])
-scaledCase6 = getScaled(fileList[12])
-scaledCase7 = getScaled(fileList[13])
-scaledCase8 = getScaled(fileList[14])
-scaledCase9 = getScaled(fileList[15])
+scaledCase = [scaledCase1, scaledCase2, scaledCase3, scaledCase4, scaledCase5, scaledCase6, scaledCase7, scaledCase8, scaledCase9, scaledCase10, scaledCase11, scaledCase12, scaledCase13, scaledCase14, scaledCase15]
+titleList = [f"Case {i+1}" for i in range(15)]
 
-yMinLim = -2500
-yMaxLim = 2500
+fig, axs = plt.subplots(3, 5, figsize= (10, 8))
 
-fig, axs = plt.subplots(3, 5, figsize= (20, 10))
-scaledCase1.plot(kind= "line", ax= axs[0, 0], title= "Case1", ylim= (yMinLim, yMaxLim))
-scaledCase2.plot(kind= "line", ax= axs[0, 1], title= "Case2", ylim= (yMinLim, yMaxLim))
-scaledCase3.plot(kind= "line", ax= axs[0, 2], title= "Case3", ylim= (yMinLim, yMaxLim))
-scaledCase4.plot(kind= "line", ax= axs[0, 3], title= "Case4", ylim= (yMinLim, yMaxLim))
-scaledCase5.plot(kind= "line", ax= axs[0, 4], title= "Case5", ylim= (yMinLim, yMaxLim))
+for i, ax in enumerate(axs.flat):
+    scaledCase[i].plot(kind= "line", ax= ax, ylim= [yMin, yMax], title= titleList[i])
 
-scaledCase6.plot(kind= "line", ax= axs[1, 0], title= "Case6", ylim= (yMinLim, yMaxLim))
-scaledCase7.plot(kind= "line", ax= axs[1, 1], title= "Case7", ylim= (yMinLim, yMaxLim))
-scaledCase8.plot(kind= "line", ax= axs[1, 2], title= "Case8", ylim= (yMinLim, yMaxLim))
-scaledCase9.plot(kind= "line", ax= axs[1, 3], title= "Case9", ylim= (yMinLim, yMaxLim))
-scaledCase10.plot(kind= "line", ax= axs[1, 4], title= "Case10", ylim= (yMinLim, yMaxLim))
-
-scaledCase11.plot(kind= "line", ax= axs[2, 0], title= "Case11", ylim= (yMinLim, yMaxLim))
-scaledCase12.plot(kind= "line", ax= axs[2, 1], title= "Case12", ylim= (yMinLim, yMaxLim))
-scaledCase13.plot(kind= "line", ax= axs[2, 2], title= "Case13", ylim= (yMinLim, yMaxLim))
-scaledCase14.plot(kind= "line", ax= axs[2, 3], title= "Case14", ylim= (yMinLim, yMaxLim))
-scaledCase15.plot(kind= "line", ax= axs[2, 4], title= "Case15", ylim= (yMinLim, yMaxLim))
-
-plt.subplots_adjust(wspace= 0.4, hspace= 0.6)
+plt.tight_layout()
 plt.show()
 
-# C:\Users\hyukk\Desktop\MagneticTest\Test2\Result\
+#  /Users/jwh/Desktop/0720/MagneticTest/Test2/result/
