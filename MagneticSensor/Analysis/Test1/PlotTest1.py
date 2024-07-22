@@ -4,7 +4,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-folderPath = input("Folder: ")
+# folderPath = input("Folder: ")
+folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test1_2/result/"
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
 sensor1Data = pd.DataFrame()
@@ -65,13 +66,17 @@ scaledSensor4 = sensor4Data - dfBase456Mean[0]
 scaledSensor5 = sensor5Data - dfBase456Mean[1]
 scaledSensor6 = sensor6Data - dfBase456Mean[2]
 
+yMin = -1300
+yMax = 50
+yLim = [yMin, yMax]
+
 fig, ax = plt.subplots(2, 3, figsize= (12, 8))
-scaledSensor1.plot(kind= "line", ax= ax[0, 0], title= "Sensor1")
-scaledSensor2.plot(kind= "line", ax= ax[0, 1], title= "Sensor2")
-scaledSensor3.plot(kind= "line", ax= ax[0, 2], title= "Sensor3")
-scaledSensor4.plot(kind= "line", ax= ax[1, 0], title= "Sensor4")
-scaledSensor5.plot(kind= "line", ax= ax[1, 1], title= "Sensor5")
-scaledSensor6.plot(kind= "line", ax= ax[1, 2], title= "Sensor6")
+scaledSensor1.plot(kind= "line", ax= ax[0, 0], title= "Sensor1", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
+scaledSensor2.plot(kind= "line", ax= ax[0, 1], title= "Sensor2", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
+scaledSensor3.plot(kind= "line", ax= ax[0, 2], title= "Sensor3", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
+scaledSensor4.plot(kind= "line", ax= ax[1, 0], title= "Sensor4", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
+scaledSensor5.plot(kind= "line", ax= ax[1, 1], title= "Sensor5", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
+scaledSensor6.plot(kind= "line", ax= ax[1, 2], title= "Sensor6", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
 plt.subplots_adjust(wspace= 0.4, hspace= 0.6)
 plt.show()
 
