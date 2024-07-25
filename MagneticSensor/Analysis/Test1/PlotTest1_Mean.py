@@ -79,20 +79,64 @@ scaledSensorMean = pd.concat((scaledSensorMean, scaledSensor4Mean), axis= 1)
 scaledSensorMean = pd.concat((scaledSensorMean, scaledSensor5Mean), axis= 1)
 scaledSensorMean = pd.concat((scaledSensorMean, scaledSensor6Mean), axis= 1)
 
-print(scaledSensorMean.head())
+sensorList = [f"s{i}" for i in np.arange(1, 7, 1)]
+distanceList = [f"d{i}" for i in np.arange(10, 70, 10)]
+print(sensorList)
+
+scaledSensorMean.columns = sensorList
+
+distance = [i for i in np.arange(10, 70, 10)]
+print(distance)
+
+distance = pd.DataFrame(distance, columns= ["distance"], index= distanceList)
+
+scaledSensorMean = pd.concat((distance, scaledSensorMean), axis= 1)
+print(scaledSensorMean.head(10))
+
+plotData = scaledSensorMean.drop(['d10'])
+
+print(plotData.head())
+
+yLim = [-150, 20]
+fig, ax = plt.subplots(2, 3, figsize= (12, 8))
+plotData.plot.scatter(x= 'distance', y= 's1', s= 50, marker= 'o', ax= ax[0, 0], title= "S1", grid= True, ylim= yLim)
+plotData.plot.scatter(x= 'distance', y= 's2', s= 50, marker= 'o', ax= ax[0, 1], title= "S2", grid= True, ylim= yLim)
+plotData.plot.scatter(x= 'distance', y= 's3', s= 50, marker= 'o', ax= ax[0, 2], title= "S3", grid= True, ylim= yLim)
+plotData.plot.scatter(x= 'distance', y= 's4', s= 50, marker= 'o', ax= ax[1, 0], title= "S4", grid= True, ylim= yLim)
+plotData.plot.scatter(x= 'distance', y= 's5', s= 50, marker= 'o', ax= ax[1, 1], title= "S5", grid= True, ylim= yLim)
+plotData.plot.scatter(x= 'distance', y= 's6', s= 50, marker= 'o', ax= ax[1, 2], title= "S6", grid= True, ylim= yLim)
+plt.show()
+
+
+
+print("CHECK")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 yMin = -50
 yMax = 50
 yLim = [yMin, yMax]
 
-fig, ax = plt.subplots(2, 3, figsize= (12, 8))
-scaledSensor1.plot(kind= "line", ax= ax[0, 0], title= "Sensor1", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
-scaledSensor2.plot(kind= "line", ax= ax[0, 1], title= "Sensor2", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
-scaledSensor3.plot(kind= "line", ax= ax[0, 2], title= "Sensor3", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
-scaledSensor4.plot(kind= "line", ax= ax[1, 0], title= "Sensor4", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
-scaledSensor5.plot(kind= "line", ax= ax[1, 1], title= "Sensor5", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
-scaledSensor6.plot(kind= "line", ax= ax[1, 2], title= "Sensor6", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
-plt.subplots_adjust(wspace= 0.4, hspace= 0.6)
-plt.show()
+# fig, ax = plt.subplots(2, 3, figsize= (12, 8))
+# scaledSensor1.plot(kind= "line", ax= ax[0, 0], title= "Sensor1", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
+# scaledSensor2.plot(kind= "line", ax= ax[0, 1], title= "Sensor2", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
+# scaledSensor3.plot(kind= "line", ax= ax[0, 2], title= "Sensor3", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
+# scaledSensor4.plot(kind= "line", ax= ax[1, 0], title= "Sensor4", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
+# scaledSensor5.plot(kind= "line", ax= ax[1, 1], title= "Sensor5", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
+# scaledSensor6.plot(kind= "line", ax= ax[1, 2], title= "Sensor6", ylim= yLim).legend(loc= "center right", bbox_to_anchor= (1.2, 0.5))
+# plt.subplots_adjust(wspace= 0.4, hspace= 0.6)
+# plt.show()
 
 # C:\Users\hyukk\Desktop\MagneticTest\Test1_2\result\
