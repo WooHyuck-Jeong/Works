@@ -66,7 +66,22 @@ scaledSensor4 = sensor4Data - dfBase456Mean[0]
 scaledSensor5 = sensor5Data - dfBase456Mean[1]
 scaledSensor6 = sensor6Data - dfBase456Mean[2]
 
-yMin = -1200
+scaledSensor1Mean = scaledSensor1.mean(axis= 0)
+scaledSensor2Mean = scaledSensor2.mean(axis= 0)
+scaledSensor3Mean = scaledSensor3.mean(axis= 0)
+scaledSensor4Mean = scaledSensor3.mean(axis= 0)
+scaledSensor5Mean = scaledSensor4.mean(axis= 0)
+scaledSensor6Mean = scaledSensor5.mean(axis= 0)
+
+scaledSensorMean = pd.concat((scaledSensor1Mean, scaledSensor2Mean), axis= 1)
+scaledSensorMean = pd.concat((scaledSensorMean, scaledSensor3Mean), axis= 1)
+scaledSensorMean = pd.concat((scaledSensorMean, scaledSensor4Mean), axis= 1)
+scaledSensorMean = pd.concat((scaledSensorMean, scaledSensor5Mean), axis= 1)
+scaledSensorMean = pd.concat((scaledSensorMean, scaledSensor6Mean), axis= 1)
+
+print(scaledSensorMean.head())
+
+yMin = -50
 yMax = 50
 yLim = [yMin, yMax]
 
