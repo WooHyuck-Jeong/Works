@@ -66,7 +66,7 @@ scaledSensor4 = sensor4Data - dfBase456Mean[0]
 scaledSensor5 = sensor5Data - dfBase456Mean[1]
 scaledSensor6 = sensor6Data - dfBase456Mean[2]
 
-yMin = -200
+yMin = -1200
 yMax = 50
 yLim = [yMin, yMax]
 
