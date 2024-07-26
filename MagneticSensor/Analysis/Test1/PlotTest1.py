@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# folderPath = input("Folder: ")
-folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test1_2/result/"
+folderPath = input("Folder: ")
+# folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test1_2/result/"
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
 sensor1Data = pd.DataFrame()
@@ -66,7 +66,7 @@ scaledSensor4 = sensor4Data - dfBase456Mean[0]
 scaledSensor5 = sensor5Data - dfBase456Mean[1]
 scaledSensor6 = sensor6Data - dfBase456Mean[2]
 
-yMin = -200
+yMin = -1500
 yMax = 50
 yLim = [yMin, yMax]
 
