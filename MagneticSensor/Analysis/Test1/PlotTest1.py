@@ -26,27 +26,27 @@ for file in fileList:
         distance = distance.split(".")[0]
 
         if name.split("_")[0] == "s1":
-            sensorData = pd.read_csv(file, sep= ",", usecols= [0], names = [f"d{distance}"], skiprows= [0])
+            sensorData = pd.read_csv(file, sep= ",", usecols= [0], names = [f"d{distance}"], skiprows= 100)
             sensor1Data = pd.concat((sensor1Data, sensorData), axis = 1)
             
         elif name.split("_")[0] == "s2":
-            sensorData = pd.read_csv(file, sep= ",", usecols= [1], names = [f"d{distance}"], skiprows= [0])
+            sensorData = pd.read_csv(file, sep= ",", usecols= [1], names = [f"d{distance}"], skiprows= 1000)
             sensor2Data = pd.concat((sensor2Data, sensorData), axis = 1)
 
         elif name.split("_")[0] == "s3":
-            sensorData = pd.read_csv(file, sep= ",", usecols= [2], names = [f"d{distance}"], skiprows= [0])
+            sensorData = pd.read_csv(file, sep= ",", usecols= [2], names = [f"d{distance}"], skiprows= 1000)
             sensor3Data = pd.concat((sensor3Data, sensorData), axis = 1)
 
         elif name.split("_")[0] == "s4":
-            sensorData = pd.read_csv(file, sep= ",", usecols= [3], names = [f"d{distance}"], skiprows= [0])
+            sensorData = pd.read_csv(file, sep= ",", usecols= [3], names = [f"d{distance}"], skiprows= 1000)
             sensor4Data = pd.concat((sensor4Data, sensorData), axis = 1)
 
         elif name.split("_")[0] == "s5":
-            sensorData = pd.read_csv(file, sep= ",", usecols= [4], names = [f"d{distance}"], skiprows= [0])
+            sensorData = pd.read_csv(file, sep= ",", usecols= [4], names = [f"d{distance}"], skiprows= 1000)
             sensor5Data = pd.concat((sensor5Data, sensorData), axis = 1)
 
         elif name.split("_")[0] == "s6":
-            sensorData = pd.read_csv(file, sep= ",", usecols= [5], names = [f"d{distance}"], skiprows= [0])
+            sensorData = pd.read_csv(file, sep= ",", usecols= [5], names = [f"d{distance}"], skiprows= 1000)
             sensor6Data = pd.concat((sensor6Data, sensorData), axis = 1)
 
     elif name.endswith("123"):
