@@ -15,7 +15,7 @@ def makeDirectory(dirName):
 folderPath = input("Folder: ")
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
-makeDirectory(folderPath + "result//")
+makeDirectory(folderPath + "result/")
 
 colName = "col"
 sensorColName = ["s1", "s2", "s3", "s4", "s5", "s6"]
@@ -41,10 +41,12 @@ for file in fileList:
     res.columns = sensorColName
     
     saveFileName = str(file.split(f"{folderPath}")[1])
-    savePath = folderPath + "result"
-    
-    fileTestName = saveFileName + ".csv"
-    if os.path.exists(savePath + "\\" + fileTestName):
-        print(f"{fileTestName} already exist")
-    else:
-        res.to_csv(savePath + "\\" + saveFileName + ".csv", index= False)
+    savePath = folderPath + "result/"
+
+    res.to_csv(savePath + saveFileName + ".csv", index= False)
+
+    # fileTestName = saveFileName + ".csv"
+    # if os.path.exists(savePath + "\\" + fileTestName):
+    #     print(f"{fileTestName} already exist")
+    # else:
+    #     res.to_csv(savePath + "\\" + saveFileName + ".csv", index= False)
