@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# folderPath = input("Folder: ")
-folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test1_2/result/"
+folderPath = input("Folder: ")
+# folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test1_2/result/"
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
 sensor1Data = pd.DataFrame()
@@ -97,21 +97,21 @@ plotData = scaledSensorMean.drop(['d10'])
 
 print(plotData.head())
 
-yLim = [-150, 20]
+yLim = [-1500, 20]
 fig, ax = plt.subplots(2, 3, figsize= (12, 8))
-plotData.plot.scatter(x= 'distance', y= 's1', s= 50, marker= 'o', ax= ax[0, 0], title= "S1", grid= True, ylim= yLim)
-plotData.plot.scatter(x= 'distance', y= 's2', s= 50, marker= 'o', ax= ax[0, 1], title= "S2", grid= True, ylim= yLim)
-plotData.plot.scatter(x= 'distance', y= 's3', s= 50, marker= 'o', ax= ax[0, 2], title= "S3", grid= True, ylim= yLim)
-plotData.plot.scatter(x= 'distance', y= 's4', s= 50, marker= 'o', ax= ax[1, 0], title= "S4", grid= True, ylim= yLim)
-plotData.plot.scatter(x= 'distance', y= 's5', s= 50, marker= 'o', ax= ax[1, 1], title= "S5", grid= True, ylim= yLim)
-plotData.plot.scatter(x= 'distance', y= 's6', s= 50, marker= 'o', ax= ax[1, 2], title= "S6", grid= True, ylim= yLim)
+plotData.plot.scatter(x= 'distance', y= 's1', s= 10, marker= 'o', ax= ax[0, 0], title= "S1", grid= True, ylim= yLim)
+plotData.plot.scatter(x= 'distance', y= 's2', s= 10, marker= 'o', ax= ax[0, 1], title= "S2", grid= True, ylim= yLim)
+plotData.plot.scatter(x= 'distance', y= 's3', s= 10, marker= 'o', ax= ax[0, 2], title= "S3", grid= True, ylim= yLim)
+plotData.plot.scatter(x= 'distance', y= 's4', s= 10, marker= 'o', ax= ax[1, 0], title= "S4", grid= True, ylim= yLim)
+plotData.plot.scatter(x= 'distance', y= 's5', s= 10, marker= 'o', ax= ax[1, 1], title= "S5", grid= True, ylim= yLim)
+plotData.plot.scatter(x= 'distance', y= 's6', s= 10, marker= 'o', ax= ax[1, 2], title= "S6", grid= True, ylim= yLim)
 plt.show()
 
 
 
 print("CHECK")
 
-
+# /Users/jwh/Desktop/0726/result/
 
 
 
@@ -139,4 +139,4 @@ yLim = [yMin, yMax]
 # plt.subplots_adjust(wspace= 0.4, hspace= 0.6)
 # plt.show()
 
-# C:\Users\hyukk\Desktop\MagneticTest\Test1_2\result\
+# /Users/jwh/Desktop/0726/result/
