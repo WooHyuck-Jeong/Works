@@ -95,6 +95,7 @@ scaledSensor5Mean = concatScaledData(scaledSensor5Mean)
 scaledSensor6Mean = concatScaledData(scaledSensor6Mean)
 
 fig, axs  = plt.subplots(2, 3, figsize= (12, 8))
+fig.suptitle("Test1", fontweight= 'bold')
 scaledSensor1Mean.plot.line(x= "distance", y= "s1", c= "red", ax= axs[0, 0], marker= "*", grid= True)
 scaledSensor2Mean.plot.line(x= "distance", y= "s2", c= "orange", ax= axs[0, 1], marker= "^", grid= True)
 scaledSensor3Mean.plot.line(x= "distance", y= "s3", c= "gold", ax= axs[0, 2], marker= "d", grid= True)
