@@ -33,7 +33,7 @@ def getScaledData(df):
     for i in range(6):
         res.append(df.iloc[:, i] - baseMean.iloc[i, 0])
     
-    res = np.array(res).reshape(6, 3000).T
+    res = np.array(res).reshape(6, 2000).T
     res = pd.DataFrame(res, columns= ["s1", "s2", "s3", "s4", "s5", "s6"])
 
     return res
@@ -54,8 +54,8 @@ scaledCase13 = getScaledData(case13)
 scaledCase14 = getScaledData(case14)
 scaledCase15 = getScaledData(case15)
 
-yMin = -2400
-yMax = 2400
+yMin = -1500
+yMax = 1500
 
 scaledCase = [scaledCase1, scaledCase2, scaledCase3, scaledCase4, scaledCase5, 
               scaledCase6, scaledCase7, scaledCase8, scaledCase9, scaledCase10, 

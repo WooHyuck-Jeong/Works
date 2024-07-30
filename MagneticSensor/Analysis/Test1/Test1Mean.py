@@ -78,10 +78,10 @@ scaledSensor4Mean = pd.DataFrame(scaledSensor4.mean(axis= 0), columns= ["s4"])
 scaledSensor5Mean = pd.DataFrame(scaledSensor5.mean(axis= 0), columns= ["s5"])
 scaledSensor6Mean = pd.DataFrame(scaledSensor6.mean(axis= 0), columns= ["s6"])
 
-distanceList = [i for i in np.arange(10, 60, 10)]
+distanceList = [i for i in np.arange(10, 90, 10)]
 distanceList = pd.DataFrame(distanceList)
 
-distanceIndex = [f"d{i}" for i in np.arange(10, 60, 10)]
+distanceIndex = [f"d{i}" for i in np.arange(10, 90, 10)]
 distanceList.index = distanceIndex
 distanceList.columns = ["distance"]
 
@@ -96,13 +96,15 @@ scaledSensor4Mean = concatScaledData(scaledSensor4Mean)
 scaledSensor5Mean = concatScaledData(scaledSensor5Mean)
 scaledSensor6Mean = concatScaledData(scaledSensor6Mean)
 
+xTicks = [i for i in np.arange(10, 90, 10)]
+
 fig, axs  = plt.subplots(2, 3, figsize= (12, 8))
 fig.suptitle("Test1", fontweight= 'bold')
-scaledSensor1Mean.plot.line(x= "distance", y= "s1", c= "red", ax= axs[0, 0], marker= "*", grid= True)
-scaledSensor2Mean.plot.line(x= "distance", y= "s2", c= "orange", ax= axs[0, 1], marker= "^", grid= True)
-scaledSensor3Mean.plot.line(x= "distance", y= "s3", c= "gold", ax= axs[0, 2], marker= "d", grid= True)
-scaledSensor4Mean.plot.line(x= "distance", y= "s4", c= "green", ax= axs[1, 0], marker= "o", grid= True)
-scaledSensor5Mean.plot.line(x= "distance", y= "s5", c= "blue", ax= axs[1, 1], marker= "v", grid= True)
-scaledSensor6Mean.plot.line(x= "distance", y= "s6", c= "violet", ax= axs[1, 2], marker= "x", grid= True)
+scaledSensor1Mean.plot.line(x= "distance", y= "s1", c= "red", ax= axs[0, 0], marker= "*", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
+scaledSensor2Mean.plot.line(x= "distance", y= "s2", c= "orange", ax= axs[0, 1], marker= "^", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
+scaledSensor3Mean.plot.line(x= "distance", y= "s3", c= "gold", ax= axs[0, 2], marker= "d", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
+scaledSensor4Mean.plot.line(x= "distance", y= "s4", c= "green", ax= axs[1, 0], marker= "o", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
+scaledSensor5Mean.plot.line(x= "distance", y= "s5", c= "blue", ax= axs[1, 1], marker= "v", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
+scaledSensor6Mean.plot.line(x= "distance", y= "s6", c= "violet", ax= axs[1, 2], marker= "x", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
 
 plt.show()

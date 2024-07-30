@@ -5,26 +5,28 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def makeDirectory(dirName):
+    """
+        폴더 생성 함수
+    """
     if not os.path.exists(dirName):
         os.makedirs(dirName, exist_ok= True)
 
+
 # folderPath = input("Folder: ")
-folderPath = "C:\\Users\\hyukk\\Desktop\\0730\\Test2\\"
+folderPath = "C:\\Users\hyukk\\Desktop\\0730\\Test3\\"
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
-makeDirectory(folderPath + "result//")
+# makeDirectory(folderPath + "result/")
+makeDirectory(folderPath + "result\\")
 
 colName = "col"
 sensorColName = ["s1", "s2", "s3", "s4", "s5", "s6"]
 
-numberOfSkipRow = 300
-numberOfRows = 2000
-
 for file in fileList:
-    df = pd.read_table(file, names= [colName], skiprows= numberOfSkipRow, nrows= numberOfRows)
+    df = pd.read_table(file, names= [colName], skiprows= 10, nrows= 1000)
     df = df.iloc[:, 0].str[-39:]
     df = pd.DataFrame(df, columns= [colName])
-
+    
     s1 = df[colName].str[4:9]
     s2 = df[colName].str[9:14]
     s3 = df[colName].str[14:19]
@@ -39,11 +41,8 @@ for file in fileList:
     res = pd.concat((res, s6), axis= 1)
 
     res.columns = sensorColName
-
+    
     saveFileName = str(file.split(f"{folderPath}")[1])
-    savePath = folderPath + "result\\"
+    savePath = folderPath + "result/"
 
-    if os.path.exists(savePath + saveFileName):
-        print(f"{saveFileName} already exists")
-    else:
-        res.to_csv(savePath + "\\" + saveFileName + ".csv", index= False)
+    res.to_csv(savePath + saveFileName + ".csv", index= False)
