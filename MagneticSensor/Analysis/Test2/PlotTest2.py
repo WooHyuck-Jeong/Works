@@ -5,7 +5,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test2/result/"
-folderPath = "C:\\Users\\hyukk\\Desktop\\0730\\Test2\\result\\"
+# folderPath = "C:\\Users\\hyukk\\Desktop\\0730\\Test2\\result\\"
+folderPath = "/Users/jwh/Desktop/0730/Test2/result/"
+
 fileList = sorted(glob.glob(folderPath + "*.csv"))
 
 base = pd.read_csv(fileList[0], sep= ",")
@@ -54,8 +56,8 @@ scaledCase13 = getScaledData(case13)
 scaledCase14 = getScaledData(case14)
 scaledCase15 = getScaledData(case15)
 
-yMin = -1500
-yMax = 1500
+yMin = -2400
+yMax = 2400
 
 scaledCase = [scaledCase1, scaledCase2, scaledCase3, scaledCase4, scaledCase5, 
               scaledCase6, scaledCase7, scaledCase8, scaledCase9, scaledCase10, 
@@ -69,7 +71,7 @@ titleList = [f"Case {i+1}" for i in range(15)]
 fig, axs = plt.subplots(3, 5, figsize= (10, 8))
 
 for i, ax in enumerate(axs.flat):
-    scaledCase[i].plot(kind= "line", ax= ax, ylim= [yMin, yMax], title= titleList[i])
+    scaledCase[i].plot(kind= "line", ax= ax, ylim= [yMin, yMax], title= titleList[i]).legend()
 
 plt.tight_layout()
 plt.show()

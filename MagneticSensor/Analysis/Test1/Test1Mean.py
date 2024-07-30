@@ -4,11 +4,11 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# folderPath = "/Users/jwh/Desktop/0726/result/"
+folderPath = "/Users/jwh/Desktop/0730/Test1/result/"
 # folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test1_2/result/"
 # folderPath = input("Folder Path: ")
-# folderPath = "C:\\Users\\hyukk\\Desktop\\0726\\result\\"
-folderPath = "C:\\Users\\hyukk\\Desktop\\0730\\Test1\\result\\"
+# folderPath = "C:\\Users\\hyukk\\Desktop\\0730\\result\\"
+# folderPath = "C:\\Users\\hyukk\\Desktop\\0730\\Test1\\result\\"
 
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
@@ -99,12 +99,15 @@ scaledSensor6Mean = concatScaledData(scaledSensor6Mean)
 xTicks = [i for i in np.arange(10, 90, 10)]
 
 fig, axs  = plt.subplots(2, 3, figsize= (12, 8))
+yMinLimit = -1400
+yMaxLimit = 50
+yLimit = [yMinLimit, yMaxLimit]
 fig.suptitle("Test1", fontweight= 'bold')
-scaledSensor1Mean.plot.line(x= "distance", y= "s1", c= "red", ax= axs[0, 0], marker= "*", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
-scaledSensor2Mean.plot.line(x= "distance", y= "s2", c= "orange", ax= axs[0, 1], marker= "^", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
-scaledSensor3Mean.plot.line(x= "distance", y= "s3", c= "gold", ax= axs[0, 2], marker= "d", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
-scaledSensor4Mean.plot.line(x= "distance", y= "s4", c= "green", ax= axs[1, 0], marker= "o", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
-scaledSensor5Mean.plot.line(x= "distance", y= "s5", c= "blue", ax= axs[1, 1], marker= "v", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
-scaledSensor6Mean.plot.line(x= "distance", y= "s6", c= "violet", ax= axs[1, 2], marker= "x", grid= True, xlim= [0, 90], ylim= [-1500, 50], xticks= xTicks)
+scaledSensor1Mean.plot.line(x= "distance", y= "s1", c= "red", ax= axs[0, 0], marker= "*", grid= True, xlim= [0, 90], ylim= yLimit, xticks= xTicks)
+scaledSensor2Mean.plot.line(x= "distance", y= "s2", c= "orange", ax= axs[0, 1], marker= "^", grid= True, xlim= [0, 90], ylim= yLimit, xticks= xTicks)
+scaledSensor3Mean.plot.line(x= "distance", y= "s3", c= "gold", ax= axs[0, 2], marker= "d", grid= True, xlim= [0, 90], ylim= yLimit, xticks= xTicks)
+scaledSensor4Mean.plot.line(x= "distance", y= "s4", c= "green", ax= axs[1, 0], marker= "o", grid= True, xlim= [0, 90], ylim= yLimit, xticks= xTicks)
+scaledSensor5Mean.plot.line(x= "distance", y= "s5", c= "blue", ax= axs[1, 1], marker= "v", grid= True, xlim= [0, 90], ylim= yLimit, xticks= xTicks)
+scaledSensor6Mean.plot.line(x= "distance", y= "s6", c= "violet", ax= axs[1, 2], marker= "x", grid= True, xlim= [0, 90], ylim= yLimit, xticks= xTicks)
 
 plt.show()

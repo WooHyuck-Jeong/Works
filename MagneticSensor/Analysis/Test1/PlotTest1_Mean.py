@@ -4,8 +4,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-folderPath = input("Folder: ")
+# folderPath = input("Folder: ")
 # folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test1_2/result/"
+folderPath = "/Users/jwh/Desktop/0730/Test1/result/"
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
 sensor1Data = pd.DataFrame()

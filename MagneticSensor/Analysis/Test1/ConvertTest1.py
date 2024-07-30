@@ -13,7 +13,8 @@ def makeDirectory(dirName):
 
 
 # folderPath = input("Folder: ")
-folderPath = "C:\\Users\hyukk\\Desktop\\0730\\Test1\\"
+# folderPath = "C:\\Users\hyukk\\Desktop\\0730\\Test1\\"
+folderPath = "/Users/jwh/Desktop/0730/"
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
 # makeDirectory(folderPath + "result/")
