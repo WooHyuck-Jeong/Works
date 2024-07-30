@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 # folderPath = "/Users/jwh/Desktop/0726/result/"
 # folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test1_2/result/"
 folderPath = input("Folder Path: ")
+# folderPath = "C:\\Users\\hyukk\\Desktop\\0726\\result\\"
 
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
