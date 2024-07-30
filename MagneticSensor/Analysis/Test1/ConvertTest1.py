@@ -12,10 +12,12 @@ def makeDirectory(dirName):
         os.makedirs(dirName, exist_ok= True)
 
 
-folderPath = input("Folder: ")
+# folderPath = input("Folder: ")
+folderPath = "C:\\Users\hyukk\\Desktop\\0730\\Test1\\"
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
-makeDirectory(folderPath + "result/")
+# makeDirectory(folderPath + "result/")
+makeDirectory(folderPath + "result\\")
 
 colName = "col"
 sensorColName = ["s1", "s2", "s3", "s4", "s5", "s6"]

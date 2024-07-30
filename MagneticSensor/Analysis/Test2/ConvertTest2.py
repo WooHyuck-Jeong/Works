@@ -8,7 +8,8 @@ def makeDirectory(dirName):
     if not os.path.exists(dirName):
         os.makedirs(dirName, exist_ok= True)
 
-folderPath = input("Folder: ")
+# folderPath = input("Folder: ")
+folderPath = "C:\\Users\\hyukk\\Desktop\\0730\\Test2\\"
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
 makeDirectory(folderPath + "result//")

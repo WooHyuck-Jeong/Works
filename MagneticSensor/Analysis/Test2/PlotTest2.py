@@ -4,7 +4,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test2/result/"
+# folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test2/result/"
+folderPath = "C:\\Users\\hyukk\\Desktop\\0730\\Test2\\result\\"
 fileList = sorted(glob.glob(folderPath + "*.csv"))
 
 base = pd.read_csv(fileList[0], sep= ",")
