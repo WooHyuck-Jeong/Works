@@ -4,7 +4,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-folderPath = "/Users/jwh/Desktop/0730/Test1/result/"
+# folderPath = "/Users/jwh/Desktop/0730/Test1/result/"
+folderPath = "/Users/jwh/Desktop/Test0730/Test1/result/"
 # folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test1_2/result/"
 # folderPath = input("Folder Path: ")
 # folderPath = "C:\\Users\\hyukk\\Desktop\\0730\\result\\"

@@ -5,7 +5,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test2/result/"
-# folderPath = "C:\\Users\\hyukk\\Desktop\\0730\\Test2\\result\\"
 # folderPath = "/Users/jwh/Desktop/0730/Test2/result/"
 folderPath = "/Users/jwh/Desktop/Test0730/Test2/result/"
 
@@ -29,7 +28,6 @@ case12 = pd.read_csv(fileList[4], sep= ",")
 case13 = pd.read_csv(fileList[5], sep= ",")
 case14 = pd.read_csv(fileList[6], sep= ",")
 case15 = pd.read_csv(fileList[7], sep= ",")
-
 
 def getScaledData(df):
     res = []
@@ -64,17 +62,13 @@ scaledCase = [scaledCase1, scaledCase2, scaledCase3, scaledCase4, scaledCase5,
               scaledCase6, scaledCase7, scaledCase8, scaledCase9, scaledCase10, 
               scaledCase11, scaledCase12, scaledCase13, scaledCase14, scaledCase15]
 
-# for i in range(len(scaledCase)):
-#     scaledCase[i].to_csv(f"/Users/jwh/Desktop/0720/MagneticTest/Test2/result/ScaledCase{i+1}.csv", sep= ",")
+scaledCaseMean = [scaledCase[i].mean(axis= 0) for i in range(len(scaledCase))]
 
-titleList = [f"Case {i+1}" for i in range(15)]
+markerList = ["*", "^", "v", "d", "+", "o", "h", "p", ]
 
-fig, axs = plt.subplots(3, 5, figsize= (10, 8))
+fig, axs = plt.subplots(3, 5, figsize= (20, 18))
 
 for i, ax in enumerate(axs.flat):
-    scaledCase[i].plot(kind= "line", ax= ax, ylim= [yMin, yMax], title= titleList[i]).legend()
+    scaledCaseMean[i].plot(kind= "line", ax= ax, title= f"Case{i+1}", grid= True, marker= "*")
 
-plt.tight_layout()
 plt.show()
-
-#  /Users/jwh/Desktop/0720/MagneticTest/Test2/result/

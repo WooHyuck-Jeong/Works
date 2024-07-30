@@ -14,17 +14,18 @@ def makeDirectory(dirName):
 
 # folderPath = input("Folder: ")
 # folderPath = "C:\\Users\hyukk\\Desktop\\0730\\Test1\\"
-folderPath = "/Users/jwh/Desktop/0730/"
+# folderPath = "/Users/jwh/Desktop/0730/"
+folderPath = "/Users/jwh/Desktop/Test0730/Test1/"
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 
 # makeDirectory(folderPath + "result/")
-makeDirectory(folderPath + "result\\")
+makeDirectory(folderPath + "result/")
 
 colName = "col"
 sensorColName = ["s1", "s2", "s3", "s4", "s5", "s6"]
 
 for file in fileList:
-    df = pd.read_table(file, names= [colName], skiprows= 100, nrows= 1000)
+    df = pd.read_table(file, names= [colName], skiprows= 100)
     df = df.iloc[:, 0].str[-39:]
     df = pd.DataFrame(df, columns= [colName])
     
