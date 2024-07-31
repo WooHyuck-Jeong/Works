@@ -4,9 +4,11 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-baseFilePath = "/Users/jwh/Desktop/0730/Test3/result/Base456.csv"
+# baseFilePath = "/Users/jwh/Desktop/0730/Test3/result/Base456.csv"
+baseFilePath = "/Users/jwh/Documents/KOTC/수중도킹/2024년도/6_자기장센서 시험/Test0730_전달/Test3/result/Base456.csv"
 
-movingFilePath = "/Users/jwh/Desktop/0730/Test4/result/Moving456.csv"
+# movingFilePath = "/Users/jwh/Desktop/0730/Test4/result/Moving456.csv"
+movingFilePath = "/Users/jwh/Documents/KOTC/수중도킹/2024년도/6_자기장센서 시험/Test0730_전달/Test4/result/Moving456.csv"
 
 colName = "col"
 useCols = [3, 4, 5]
