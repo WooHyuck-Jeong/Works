@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-folderPath = "/Users/jwh/Desktop/0730/LR/result/"
+folderPath = "/Users/jwh/Desktop/Test0730_전달/InOut70/result/"
 
 fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfile(file)]
 # base = 1
@@ -12,9 +12,9 @@ fileList = [file for file in sorted(glob.glob(folderPath + "*")) if os.path.isfi
 
 useCols = [3, 4, 5]
 
-baseData = pd.read_csv(fileList[1], sep= ",", usecols= useCols)
-innerData = pd.read_csv(fileList[2], sep= ",", usecols= useCols)
-outerdata = pd.read_csv(fileList[3], sep= ",", usecols= useCols)
+baseData = pd.read_csv(fileList[0], sep= ",", usecols= useCols)
+innerData = pd.read_csv(fileList[1], sep= ",", usecols= useCols)
+outerdata = pd.read_csv(fileList[2], sep= ",", usecols= useCols)
 
 meanBaseData = baseData.mean(axis= 0).to_numpy()
 
