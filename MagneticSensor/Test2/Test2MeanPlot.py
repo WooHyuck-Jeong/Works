@@ -6,8 +6,11 @@ import matplotlib.pyplot as plt
 
 # folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test2/result/"
 # folderPath = "/Users/jwh/Desktop/0730/Test2/result/"
-folderPath = "/Users/jwh/Desktop/Test0730/Test2/result/"
+# folderPath = "/Users/jwh/Desktop/Test0730/Test2/result/"
+folderPath = "/Users/jwh/Documents/KOTC/수중도킹/2024년도/6_자기장센서 시험/0720/MagneticTest/Test2/result/"
+# folderPath = "/Users/jwh/Documents/KOTC/수중도킹/2024년도/6_자기장센서 시험/0719_자기장센서테스트/Preprocessed data/Test2/"
 
+# fileList = [file for file in sorted(glob.glob(folderPath + "*.csv")) if os.path.isfile(file)]
 fileList = sorted(glob.glob(folderPath + "*.csv"))
 
 base = pd.read_csv(fileList[0], sep= ",")
