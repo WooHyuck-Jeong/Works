@@ -4,77 +4,48 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# folderPath = "/Users/jwh/Desktop/0720/MagneticTest/Test2/result/"
-# folderPath = "C:\\Users\\hyukk\\Desktop\\0730\\Test2\\result\\"
-# folderPath = "/Users/jwh/Desktop/0730/Test2/result/"
-folderPath = "/Users/jwh/Desktop/Test0730/Test2/result/"
+# Datapath
+dataPath = "/Users/jwh/Documents/KOTC/수중도킹/2024년도/6_자기장센서 시험/Test0730_전달/Test2/result/"
 
-fileList = sorted(glob.glob(folderPath + "*.csv"))
+# Files
+fileNames = [file for file in sorted(glob.glob(dataPath + "*.csv")) if os.path.isfile(file)]
 
-base = pd.read_csv(fileList[0], sep= ",")
-baseMean = pd.DataFrame(base.mean(axis= 0))
+base = pd.read_csv(fileNames[0], sep= ",")
+meanBase = pd.DataFrame(base.mean(axis= 0))
 
-case1 = pd.read_csv(fileList[1], sep= ",")
-case2 = pd.read_csv(fileList[8], sep= ",")
-case3 = pd.read_csv(fileList[9], sep= ",")
-case4 = pd.read_csv(fileList[10], sep= ",")
-case5 = pd.read_csv(fileList[11], sep= ",")
-case6 = pd.read_csv(fileList[12], sep= ",")
-case7 = pd.read_csv(fileList[13], sep= ",")
-case8 = pd.read_csv(fileList[14], sep= ",")
-case9 = pd.read_csv(fileList[15], sep= ",")
-case10 = pd.read_csv(fileList[2], sep= ",")
-case11 = pd.read_csv(fileList[3], sep= ",")
-case12 = pd.read_csv(fileList[4], sep= ",")
-case13 = pd.read_csv(fileList[5], sep= ",")
-case14 = pd.read_csv(fileList[6], sep= ",")
-case15 = pd.read_csv(fileList[7], sep= ",")
+fileIdx = [1, 8, 9, 10, 11, 12, 13, 14, 15, 2, 3, 4, 5, 6, 7]
 
+files = []
+
+for idx in fileIdx:
+    caseData = pd.read_csv(fileNames[idx], sep= ",")
+    files.append(caseData)
+
+sensorNames = [f's{i}' for i in np.arange(1, 7, 1)]
 
 def getScaledData(df):
     res = []
     for i in range(6):
-        res.append(df.iloc[:, i] - baseMean.iloc[i, 0])
-    
+        res.append(df.iloc[:, i] - meanBase.iloc[i, 0])
     res = np.array(res).reshape(6, -1).T
-    res = pd.DataFrame(res, columns= ["s1", "s2", "s3", "s4", "s5", "s6"])
-
+    res = pd.DataFrame(res, columns= sensorNames)
     return res
 
-scaledCase1 = getScaledData(case1)
-scaledCase2 = getScaledData(case2)
-scaledCase3 = getScaledData(case3)
-scaledCase4 = getScaledData(case4)
-scaledCase5 = getScaledData(case5)
-scaledCase6 = getScaledData(case6)
-scaledCase7 = getScaledData(case7)
-scaledCase8 = getScaledData(case8)
-scaledCase9 = getScaledData(case9)
-scaledCase10 = getScaledData(case10)
-scaledCase11 = getScaledData(case11)
-scaledCase12 = getScaledData(case12)
-scaledCase13 = getScaledData(case13)
-scaledCase14 = getScaledData(case14)
-scaledCase15 = getScaledData(case15)
+scaledData = []
+for i in range(len(files)):
+    scaled = getScaledData(files[i])
+    scaledData.append(scaled)
 
-yMin = -2400
-yMax = 2400
+yMin = -2200
+yMax = 2200
+yLim = [yMin, yMax]
 
-scaledCase = [scaledCase1, scaledCase2, scaledCase3, scaledCase4, scaledCase5, 
-              scaledCase6, scaledCase7, scaledCase8, scaledCase9, scaledCase10, 
-              scaledCase11, scaledCase12, scaledCase13, scaledCase14, scaledCase15]
-
-# for i in range(len(scaledCase)):
-#     scaledCase[i].to_csv(f"/Users/jwh/Desktop/0720/MagneticTest/Test2/result/ScaledCase{i+1}.csv", sep= ",")
-
-titleList = [f"Case {i+1}" for i in range(15)]
-
-fig, axs = plt.subplots(3, 5, figsize= (10, 8))
-
+fig, axs = plt.subplots(3, 5, figsize= (20, 18))
 for i, ax in enumerate(axs.flat):
-    scaledCase[i].plot(kind= "line", ax= ax, ylim= [yMin, yMax], title= titleList[i]).legend()
-
-plt.tight_layout()
+    scaledData[i].plot(kind= "line",
+                       ax= ax,
+                       ylim= yLim,
+                       title= f"Case {i+1}",
+                       ).legend()
+plt.subplots_adjust(hspace= 0.4)
 plt.show()
-
-#  /Users/jwh/Desktop/0720/MagneticTest/Test2/result/
